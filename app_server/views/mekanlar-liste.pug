@@ -4,29 +4,28 @@ block content
   #banner.page-header
     .row
       .col-lg-6
-        h1
-          |MekanBul
-          small &nbsp; Isparta civarındaki mekanları keşfedin!
+        h1=sayfaBaslik.siteAd
+          small &nbsp; #{sayfaBaslik.aciklama}
   .row
-    each place in places
+    each mekan in mekanlar
       .col-xs-12.col-sm-12
         .row.list-group
           .col-xs-12.list-group-item
             h4
-              a(href='/mekan/') #{place.ad}
+              a(href='/mekan/') #{mekan.ad}
               small &nbsp;
-              - for (var i = 0; i < place.puan; ++i) {
+              - for (var i = 0; i < mekan.puan; ++i) {
                   span.glyphicon.glyphicon-star
               - }
-              - for (var i = place.puan; i < 5; ++i) {
+              - for (var i = mekan.puan; i < 5; ++i) {
                   span.glyphicon.glyphicon-star-empty
               - }
               
-            span.badge.pull-right.badge-default #{place.mesafe}
-            p.address #{place.adres}
+            span.badge.pull-right.badge-default #{mekan.mesafe}
+            p.address #{mekan.adres}
             p
-              each i in place.info
-                span.label.label-warning #{i}
+              each imkan in mekan.imkanlar
+                span.label.label-warning #{imkan}
                 | &nbsp;
           .col-xs-12.col-sm-12
 
