@@ -1,4 +1,5 @@
 var mongoose = require( 'mongoose' );
+
 var dbURI = 'mongodb+srv://mekanBul:o2KgR6NFd9LIbfzQ@mekanbul.ggfnu.mongodb.net/mekanbul?retryWrites=true&w=majority';
 
 mongoose.connect(dbURI, {useNewUrlParser:true});

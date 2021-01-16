@@ -19,7 +19,8 @@ const mekanlariListele=async(req, res)=> {
 	var geoOptions = {
 		distanceField: 'mesafe',
 		spherical: true,
-		key:'koordinatlar'
+		key:'koordinatlar',
+		maxDistance:20000
 	};
 	if(!enlem || !boylam){
 		cevapOlustur(res, 404, {
@@ -38,11 +39,11 @@ const mekanlariListele=async(req, res)=> {
 			]);
 			const mekanlar= sonuc.map(mekan=> { return {
 				_id:mekan._id,
-				ad:mekan.id,
+				ad:mekan.ad,
 				adres:mekan.adres,
 				puan:mekan.puan,
 				imkanlar: mekan.imkanlar,
-				mesafe:mekan.mesafe.toFixed()+'m',
+				mesafe:mekan.mesafe.toFixed()
 			}});
 			cevapOlustur(res, 200, mekanlar);
 		}
@@ -82,7 +83,7 @@ const mekanEkle=function(req, res) {
 };
 
 const mekanGetir=function(req, res) {
-	if(req.params&&req.params.mekanid){
+	if(req.params && req.params.mekanid){
 		Mekan.findById(req.params.mekanid)
 		.exec(function(hata,mekan){
 			if(!mekan){
